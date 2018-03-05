@@ -1,0 +1,9 @@
+{
+  "development": {
+    "username": "bitins_admin",
+    "password": "bitins_admin",
+    "database": "bitins_dev_database",
+    "host": "127.0.0.1",
+    "dialect": "postgres"
+  }
+}
