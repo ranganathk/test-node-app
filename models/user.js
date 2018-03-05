@@ -1,26 +1,26 @@
 'use strict';
 const models = require('../models');
 
-module.exports = () => {
-  const User = models.sequelize.define('users', {
+module.exports = (sequelize, DataTypes) => {
+  const User = sequelize.define('users', {
     name: {
       allowNull: false,
-      type: models.Sequelize.STRING
+      type: DataTypes.STRING
     },
     email: {
       allowNull: false,
       index: true,
-      type: models.Sequelize.STRING
+      type: DataTypes.STRING
     },
     wallet_address: {
       allowNull: false,
-      type: models.Sequelize.STRING
+      type: DataTypes.STRING
     }
   }, {});
   
-  // User.associate = function(models) {
-  //   // associations can be defined here
-  //   User.hasMany(models.Coupon);
-  // };
+  User.associate = function(models) {
+    // associations can be defined here
+    User.hasMany(models.coupons);
+  };
   return User;
 };

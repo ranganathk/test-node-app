@@ -1,5 +1,5 @@
 const express = require('express');
-const Coupon = require('../models/coupon');
+const { Coupon } = require('../models');
 const router = express.Router();
 
 const elements = 'ABCDEFGHIJKLMNOPQRSTUVQXYZ0123456789';
@@ -43,7 +43,7 @@ router.post('/bitcoin', (req, res) => {
       coupon
     });
   })
-  
+
 });
 
 module.exports = router;

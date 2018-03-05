@@ -1,61 +1,63 @@
 'use strict';
 const models = require('../models');
+const User = models.users;
+const Merchant = models.merchants;
 
-module.exports = () => {
-  console.log(models.sequelize);
-  const Coupon = models.sequelize.define('coupons', {
+module.exports = (sequelize, DataTypes) => {
+  console.log(sequelize);
+  const Coupon = sequelize.define('coupons', {
     code: {
       allowNull: false,
       unique: true,
       index: true,
-      type: models.Sequelize.STRING
+      type: DataTypes.STRING
     },
     user_id: {
       allowNull: false,
       index: true,
-      type: models.Sequelize.INTEGER,
+      type: DataTypes.INTEGER,
       references: { model: models.User, key: 'id' }
     },
     merchant_id: {
       allowNull: false,
       index: true,
-      type: models.Sequelize.INTEGER,
+      type: DataTypes.INTEGER,
       references: { model: models.Merchant, key: 'id' }
     },
     amount: {
       allowNull: false,
-      type: models.Sequelize.INTEGER
+      type: DataTypes.INTEGER
     },
     currency: {
       allowNull: false,
-      type: models.Sequelize.ENUM('USD', 'INR', 'GBP', 'EUR')
+      type: DataTypes.ENUM('USD', 'INR', 'GBP', 'EUR')
     },
     mode_of_payment: {
       allowNull: false,
-      type: models.Sequelize.ENUM('CASH', 'CREDIT_CARD', 'DEBIT_CARD', 'CHEQUE', 'NET_BANKING', 'OTHER')
+      type: DataTypes.ENUM('CASH', 'CREDIT_CARD', 'DEBIT_CARD', 'CHEQUE', 'NET_BANKING', 'OTHER')
     },
     redeemed: {
       allowNull: false,
       defaultValue: 'PENDING',
-      type: models.Sequelize.ENUM('PENDING', 'PROCESSING', 'COMPLETED')
+      type: DataTypes.ENUM('PENDING', 'PROCESSING', 'COMPLETED')
     },
     transaction_id: {
       allowNull: false,
-      type: models.Sequelize.STRING
+      type: DataTypes.STRING
     },
     agreedToPolicy: {
       allowNull: false,
       defaultValue: false,
-      type: models.Sequelize.BOOLEAN
+      type: DataTypes.BOOLEAN
     },
     extra_info: {
-      type: models.Sequelize.JSON
+      type: DataTypes.JSON
     }
   }, {});
   Coupon.associate = function(models) {
     // associations can be defined here
-    // Coupon.belongsTo(models.User);
-    // Coupon.belongsTo(models.Merchant);
+    Coupon.belongsTo(User);
+    Coupon.belongsTo(Merchant);
   };
   return Coupon;
 };
