@@ -15,13 +15,13 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
       index: true,
       type: DataTypes.INTEGER,
-      references: { model: models.User, key: 'id' }
+      references: { model: User, key: 'id' }
     },
     merchantId: {
       allowNull: false,
       index: true,
       type: DataTypes.INTEGER,
-      references: { model: models.Merchant, key: 'id' }
+      references: { model: Merchant, key: 'id' }
     },
     amount: {
       allowNull: false,
@@ -55,8 +55,8 @@ module.exports = (sequelize, DataTypes) => {
   }, {});
   Coupon.associate = function(models) {
     // associations can be defined here
-    Coupon.belongsTo(User);
-    Coupon.belongsTo(Merchant);
+    Coupon.belongsTo(models.users);
+    Coupon.belongsTo(models.merchants);
   };
   return Coupon;
 };

@@ -5,7 +5,7 @@ const Merchant = models.merchants;
 
 /* GET users listing. */
 router.get('/', (req, res) => {
-  User.findAll()
+  Merchant.findAll()
     .then((users) => {
       res.json(users);
     });
@@ -13,7 +13,7 @@ router.get('/', (req, res) => {
 
 router.get('/:id', (req, res) => {
   const id = req.params.id.toString();
-  User.findById(id)
+  Merchant.findById(id)
     .then((user) => {
       if (user) {
         res.json({ user });

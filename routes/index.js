@@ -1,5 +1,5 @@
 const express = require('express');
-const { Coupon } = require('../models');
+const models = require('../models');
 const router = express.Router();
 const Coupon = models.coupons;
 const random = require('../utils/random_sequence_generator');

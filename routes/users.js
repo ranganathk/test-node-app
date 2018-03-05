@@ -29,7 +29,7 @@ router.post('/', (req, res) => {
     User.create({
       name: req.body.name,
       email: req.body.email,
-      // wallet_address: random(10)
+      wallet_address: random(10)
     })
     .then((user) => {
       res.json({
