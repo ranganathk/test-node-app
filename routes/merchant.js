@@ -1,8 +1,7 @@
 const express = require('express');
 const models = require('../models');
 const router = express.Router();
-const User = models.users;
-const random = require('../utils/random_sequence_generator');
+const Merchant = models.merchants;
 
 /* GET users listing. */
 router.get('/', (req, res) => {
@@ -26,17 +25,16 @@ router.get('/:id', (req, res) => {
 
 router.post('/', (req, res) => {
   try {
-    User.create({
+    Merchant.create({
       name: req.body.name,
       email: req.body.email,
-      // wallet_address: random(10)
     })
-    .then((user) => {
-      res.json({
-        "message": "Created user.",
-        user
-      });
-    })
+      .then((merchant) => {
+        res.json({
+          "message": "Created merchant.",
+          merchant
+        });
+      })
   } catch (error) {
     res.json({ error: error.message })
   }

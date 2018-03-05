@@ -4,7 +4,6 @@ const User = models.users;
 const Merchant = models.merchants;
 
 module.exports = (sequelize, DataTypes) => {
-  console.log(sequelize);
   const Coupon = sequelize.define('coupons', {
     code: {
       allowNull: false,
@@ -12,13 +11,13 @@ module.exports = (sequelize, DataTypes) => {
       index: true,
       type: DataTypes.STRING
     },
-    user_id: {
+    userId: {
       allowNull: false,
       index: true,
       type: DataTypes.INTEGER,
       references: { model: models.User, key: 'id' }
     },
-    merchant_id: {
+    merchantId: {
       allowNull: false,
       index: true,
       type: DataTypes.INTEGER,

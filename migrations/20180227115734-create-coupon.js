@@ -15,13 +15,13 @@ module.exports = {
         index: true,
         type: Sequelize.STRING
       },
-      user_id: {
+      userId: {
         allowNull: false,
         index: true,
         type: Sequelize.INTEGER,
         references: { model: 'users', key: 'id' }
       },
-      merchant_id: {
+      merchantId: {
         allowNull: false,
         index: true,
         type: Sequelize.INTEGER,
