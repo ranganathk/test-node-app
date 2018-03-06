@@ -1,43 +1,12 @@
 const express = require('express');
-const models = require('../models');
 const router = express.Router();
-const Merchant = models.merchants;
+const merchants_controller = require('../controllers/merchants_controller');
 
 /* GET users listing. */
-router.get('/', (req, res) => {
-  Merchant.findAll()
-    .then((users) => {
-      res.json(users);
-    });
-});
+router.get('/', merchants_controller.getAllMerchants);
 
-router.get('/:id', (req, res) => {
-  const id = req.params.id.toString();
-  Merchant.findById(id)
-    .then((user) => {
-      if (user) {
-        res.json({ user });
-      } else {
-        res.json({ error: `No user found with id = ${id}` })
-      }
-    });
-});
+router.get('/:id', merchants_controller.getMerchantById);
 
-router.post('/', (req, res) => {
-  try {
-    Merchant.create({
-      name: req.body.name,
-      email: req.body.email,
-    })
-      .then((merchant) => {
-        res.json({
-          "message": "Created merchant.",
-          merchant
-        });
-      })
-  } catch (error) {
-    res.json({ error: error.message })
-  }
-});
+router.post('/', merchants_controller.createMerchant);
 
 module.exports = router;
