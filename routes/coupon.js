@@ -1,17 +1,17 @@
 const express = require('express');
 const router = express.Router();
-const coupons_controller = require('../controllers/coupons_controller');
+const couponsController = require('../controllers/couponsController');
 
 // router.get('/', async (req, res) => {
 //   res.send('Finally you are here!!');
 // });
 
-router.post('/valid', coupons_controller.checkCouponValidity);
+router.post('/valid', couponsController.checkCouponValidity);
 
-router.post('/', coupons_controller.createCoupon);
+router.post('/', couponsController.createCoupon);
 
-router.get('/', coupons_controller.getAllCoupons);
+router.get('/', couponsController.getAllCoupons);
 
-router.post('/apply', coupons_controller.redeemCoupon)
+router.post('/apply', couponsController.redeemCoupon)
 
 module.exports = router;

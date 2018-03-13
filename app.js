@@ -9,6 +9,7 @@ const index = require('./routes/index');
 const users = require('./routes/users');
 const merchants = require('./routes/merchant');
 const coupons = require('./routes/coupon');
+const coins = require('./routes/coin');
 
 const app = express();
 
@@ -28,6 +29,7 @@ app.use('/', index);
 app.use('/users', users);
 app.use('/merchants', merchants);
 app.use('/coupons', coupons);
+app.use('/coins', coins);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
